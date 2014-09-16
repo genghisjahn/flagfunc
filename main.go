@@ -35,6 +35,9 @@ func main() {
 		fnOperator := operations[*operation]
 		if result, sign, err := fnOperator(*num1, *num2); err != nil {
 			log.Println("Error:", err)
+			if sign == "none" {
+				log.Println("Try these parameters: -num1 5 -num2 10 -op add")
+			}
 		} else {
 			log.Printf("%v %v %v = %v", *num1, sign, *num2, result)
 		}
@@ -43,7 +46,7 @@ func main() {
 }
 
 func NoneOperator(num1 int, num2 int) (float64, string, error) {
-	return 0.0, "", errors.New("No operation was specified!")
+	return 0.0, "none", errors.New("No operation was specified!")
 }
 
 func AddOperator(num1 int, num2 int) (float64, string, error) {
