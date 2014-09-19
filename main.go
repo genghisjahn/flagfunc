@@ -8,8 +8,8 @@ import (
 
 var (
 	operation = flag.String("op", "none", "Operation to perform on numbers 1 & 2.")
-	num1      = flag.Float64("num1", 0.0, "First Number (integer)")
-	num2      = flag.Float64("num2", 0.0, "Second Number (integer)")
+	num1      = flag.Float64("num1", 0.0, "First Number (float64)")
+	num2      = flag.Float64("num2", 0.0, "Second Number (float64)")
 
 	operations = map[string]fnOperation{
 		"none": NoneOperator,
