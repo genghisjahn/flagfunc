@@ -8,8 +8,8 @@ import (
 
 var (
 	operation = flag.String("op", "none", "Operation to perform on numbers 1 & 2.")
-	num1      = flag.Int("num1", 0, "First Number (integer)")
-	num2      = flag.Int("num2", 0, "Second Number (integer)")
+	num1      = flag.Float64("num1", 0.0, "First Number (integer)")
+	num2      = flag.Float64("num2", 0.0, "Second Number (integer)")
 
 	operations = map[string]fnOperation{
 		"none": NoneOperator,
@@ -20,7 +20,7 @@ var (
 	}
 )
 
-type fnOperation func(num1 int, num2 int) (float64, string, error)
+type fnOperation func(num1 float64, num2 float64) (float64, string, error)
 
 func main() {
 	flag.Parse()
@@ -45,23 +45,23 @@ func main() {
 
 }
 
-func NoneOperator(num1 int, num2 int) (float64, string, error) {
+func NoneOperator(num1 float64, num2 float64) (float64, string, error) {
 	return 0.0, "none", errors.New("No operation was specified!")
 }
 
-func AddOperator(num1 int, num2 int) (float64, string, error) {
+func AddOperator(num1 float64, num2 float64) (float64, string, error) {
 	return float64(num1 + num2), "+", nil
 }
 
-func SubOperator(num1 int, num2 int) (float64, string, error) {
+func SubOperator(num1 float64, num2 float64) (float64, string, error) {
 	return float64(num1 - num2), "-", nil
 }
 
-func MultiOperator(num1 int, num2 int) (float64, string, error) {
+func MultiOperator(num1 float64, num2 float64) (float64, string, error) {
 	return float64(num1 * num2), "*", nil
 }
 
-func DivOperator(num1 int, num2 int) (float64, string, error) {
+func DivOperator(num1 float64, num2 float64) (float64, string, error) {
 	if num2 == 0 {
 		return 0.0, "", errors.New("For division (div), num2 cannot equal 0.")
 	}
